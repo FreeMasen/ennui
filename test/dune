@@ -1,0 +1,5 @@
+(test
+ (name test_ennui)
+ (modules test_ennui)
+ (package ennui)
+ (libraries ennui ounit2))
