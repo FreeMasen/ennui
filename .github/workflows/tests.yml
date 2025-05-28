@@ -1,0 +1,24 @@
+name: Run Tests
+
+on:
+  pull_request:
+  push:
+    branches:
+    - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up OCaml
+      run: sudo apt-get install opam
+    - name: Initailize opam
+      run: opam init
+    - name: Install dependencies
+      run: opam --yes install $GITHUB_WORKSPACE --deps-only --with-test
+    - name: build the library
+      run: opam exec -- dune build
+    - name: Run the tests
+      run: opam exec -- dune runtest

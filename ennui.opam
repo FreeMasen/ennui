@@ -5,7 +5,7 @@ description: "A longer description"
 maintainer: ["Maintainer Name <maintainer@example.com>"]
 authors: ["Author Name <author@example.com>"]
 license: "MIT"
-tags: ["add topics" "to describe" "your" "project"]
+tags: ["lua" "tokenizer" "," "lexer" "," "lex"]
 homepage: "https://github.com/username/reponame"
 doc: "https://url/to/documentation"
 bug-reports: "https://github.com/username/reponame/issues"
@@ -13,7 +13,9 @@ depends: [
   "dune" {>= "3.18"}
   "ocaml"
   "odoc" {with-doc}
+  "ounit2" {with-test}
 ]
+depopts: ["ounit2"]
 build: [
   ["dune" "subst"] {dev}
   [

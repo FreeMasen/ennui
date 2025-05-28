@@ -11,7 +11,7 @@
 
 (maintainers "Maintainer Name <maintainer@example.com>")
 
-(license LICENSE)
+(license MIT)
 
 (documentation https://url/to/documentation)
 
@@ -20,7 +20,8 @@
  (synopsis "A short synopsis")
  (description "A longer description")
  (depends ocaml)
+ (depopts ounit2)
  (tags
-  ("add topics" "to describe" your project)))
+  ("lua" "tokenizer", "lexer", "lex")))
 
 ; See the complete stanza docs at https://dune.readthedocs.io/en/stable/reference/dune-project/index.html
