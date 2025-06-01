@@ -104,7 +104,7 @@ let idents _ =
     Ennui.Tok.Name "A_Z";
   ] some_idents
 
-let some_strings = "\"double quoted\" 'single quoted' [[
+let some_strings = {|"double quoted" "escaped \" double quoted" 'single quoted' 'escaped \' single quoted' [[
 multi line
 ]] [=[
 escaped multi line]]]=]
@@ -114,12 +114,14 @@ escaped multi line]]]=]
 [=[]=]
 [==[]==]
 ]===]
-"
+|}
 
 let strings _ =
   assert_lex [
   Ennui.Tok.LiteralString ('"', "double quoted");
+  Ennui.Tok.LiteralString ('"', "escaped \" double quoted");
   Ennui.Tok.LiteralString ('\'', "single quoted");
+  Ennui.Tok.LiteralString ('\'', "escaped ' single quoted");
   Ennui.Tok.MultiString (0, "\nmulti line\n");
   Ennui.Tok.MultiString (1, "\nescaped multi line]]");
   Ennui.Tok.MultiString (3, "
@@ -130,6 +132,27 @@ let strings _ =
 ");
   ] some_strings
 
+let some_numbers = "0 0.1 .1 0e1 0E1 0E+1 0E-1 0x0 0xef 0xEF 0xEp+F 0xEp-F 0xep+f
+0x0.ef1"
+
+let numbers _ =
+  assert_lex
+  [
+    Ennui.Tok.Numeral "0";
+    Ennui.Tok.Numeral "0.1";
+    Ennui.Tok.Numeral ".1";
+    Ennui.Tok.Numeral "0e1";
+    Ennui.Tok.Numeral "0E1";
+    Ennui.Tok.Numeral "0E+1";
+    Ennui.Tok.Numeral "0E-1";
+    Ennui.Tok.Numeral "0x0";
+    Ennui.Tok.Numeral "0xef";
+    Ennui.Tok.Numeral "0xEF";
+    Ennui.Tok.Numeral "0xEp+F";
+    Ennui.Tok.Numeral "0xEp-F";
+    Ennui.Tok.Numeral "0xep+f";
+    Ennui.Tok.Numeral "0x0.ef1";
+  ] some_numbers
 let suite =
    "TokenTests" >::: [
      "test_line_comment" >:: test_line_comment;
@@ -139,7 +162,8 @@ let suite =
      "keywords" >:: keywords;
      "idents" >:: idents;
      "strings" >:: strings;
+     "numbers" >:: numbers;
    ]
- 
+
 let () =
    run_test_tt_main suite

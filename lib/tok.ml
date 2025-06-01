@@ -135,7 +135,7 @@ let pp ppf tok =
   | Punct p -> pp_punct ppf p
   | Keyword kw -> pp_kw ppf kw
   | Comment c -> Format.fprintf ppf "Comment(%S)" c
-  | MultiComment(eq, c) -> Format.fprintf ppf "String(--[%S[,%S)" (String.make eq '=') c
+  | MultiComment(eq, c) -> Format.fprintf ppf "Comment(--[%s[,%S)" (String.make eq '=') c
   | LiteralString(q, s) -> Format.fprintf ppf "String(%C, %S)" q s
   | MultiString(eq, s) -> Format.fprintf ppf "String([%s[,%S)" (String.make eq '=') s
   | Name n -> Format.fprintf ppf "Name(%S)" n
@@ -144,3 +144,5 @@ let pp ppf tok =
 
 let to_string tok =
   Format.asprintf "%a" pp tok
+
+type spanned_token = { start_idx : int; end_idx : int; tok : token }

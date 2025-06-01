@@ -1,4 +1,4 @@
 (library
  (name ennui)
- (modules lex tok)
+ (modules lex lex_spanned tok)
  )

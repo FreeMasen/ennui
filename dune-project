@@ -5,22 +5,21 @@
 (generate_opam_files true)
 
 (source
- (github username/reponame))
+ (github FreeMasen/ennui))
 
-(authors "Author Name <author@example.com>")
+(authors "Robert Masen <r.f.masen@gmail.com>")
 
-(maintainers "Maintainer Name <maintainer@example.com>")
+(maintainers "Robert Masen <r.f.masen@gmail.com>")
 
 (license MIT)
 
-(documentation https://url/to/documentation)
+(documentation https://github.com/FreeMasen/ennui)
 
 (package
  (name ennui)
- (synopsis "A short synopsis")
- (description "A longer description")
+ (synopsis "Lexer for Lua in ocaml")
+ (description "Lexer for Lua in ocaml")
  (depends ocaml)
- (depopts ounit2)
  (tags
   ("lua" "tokenizer", "lexer", "lex")))
 
